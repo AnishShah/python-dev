@@ -220,6 +220,14 @@
  </td>
 </tr>
 
+<tr tal:condition="context/is_edit_ok">
+ <th><tal:block i18n:translate="">GitHub Pull Request URL</tal:block>:</th>
+ <td colspan="3">
+  <input type="hidden" name="@link@github_pullrequest_urls" value="github_pullrequest_url-1">
+  <input type="text" name="github_pullrequest_url-1@url" size="50">
+ </td>
+</tr>
+
 </table>
 </fieldset>
 <table class="form">
@@ -269,6 +277,37 @@
       <tal:block tal:define="rvlink python:utils.rietveldlink(request,context.id,file.id)">
       <a tal:condition="rvlink" tal:attributes="href rvlink">review</a>
       </tal:block>
+  </td>
+ </tr>
+</table>
+
+<table class="files" tal:condition="context/github_pullrequest_urls">
+ <tr><th class="header" colspan="4" i18n:translate="">GitHub Pull Requests</th></tr>
+ <tr>
+  <th i18n:translate="">Pull Request</th>
+  <th i18n:translate="">Author</th>
+  <th i18n:translate="">Date</th>
+  <th i18n:translate="">Edit</th>
+ </tr>
+ <tr tal:repeat="github_pullrequest_url python:context.github_pullrequest_urls.sorted('creation')">
+  <td>
+   <a tal:attributes="href github_pullrequest_url/url" tal:define="PR github_pullrequest_url/pullrequest_number"
+      tal:content="python:'PR %s' % PR" target="_blank">
+    GitHub PR link
+   </a>
+  </td>
+  <td>
+   <span tal:content="github_pullrequest_url/creator">creator's name</span>
+  </td>
+  <td>
+   <span tal:content="python:github_pullrequest_url.creation.pretty('%Y-%m-%d %H:%M')">creation date</span>
+  </td>
+  <td>
+    <a tal:condition="github_pullrequest_url/is_edit_ok"
+       tal:attributes="href string:github_pullrequest_url${github_pullrequest_url/id}">edit</a>
+  </td>
+  <td>
+
   </td>
  </tr>
 </table>
