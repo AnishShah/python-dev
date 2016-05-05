@@ -37,10 +37,18 @@ class MockDBItem(object):
             return 1
         if value == 'name':
             return 'open'
+        if value == 'url':
+            return "https://github.com/python/cpython/pull/" + id
+
+    def lookup(self, key):
+        if key in self.ids:
+            return key
+        raise KeyError
 
 class PyDevMockDatabase(MockDatabase):
     def __init__(self, values):
         self.issue = self.msg = self.status = MockDBItem(values)
+        self.github_pullrequest_url = MockDBItem(values)
     def getclass(self, cls):
         return self.issue
 
