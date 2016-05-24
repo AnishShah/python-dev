@@ -286,6 +286,7 @@
  <tr>
   <th i18n:translate="">Pull Request</th>
   <th i18n:translate="">Author</th>
+  <th i18n:translate="">State</th>
   <th i18n:translate="">Date</th>
   <th i18n:translate="">Edit</th>
  </tr>
@@ -298,6 +299,9 @@
   </td>
   <td>
    <span tal:content="github_pullrequest_url/creator">creator's name</span>
+  </td>
+  <td>
+   <span tal:content="github_pullrequest_url/state">state</span>
   </td>
   <td>
    <span tal:content="python:github_pullrequest_url.creation.pretty('%Y-%m-%d %H:%M')">creation date</span>

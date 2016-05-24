@@ -176,6 +176,7 @@ hgrepo = Class(db, "hgrepo",
 github_pullrequest_url = Class(db, "github_pullrequest_url",
                                url=String(),
                                pullrequest_number=String(),
+                               state=String()
                                )
 github_pullrequest_url.setkey("pullrequest_number")
 
