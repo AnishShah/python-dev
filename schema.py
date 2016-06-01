@@ -153,7 +153,8 @@ msg = FileClass(db, "msg",
                 messageid=String(),
                 inreplyto=String(),
                 spambayes_score=Number(),
-                spambayes_misclassified=Boolean(),)
+                spambayes_misclassified=Boolean(),
+                is_github_comment=Boolean())
 
 file = FileClass(db, "file",
                  name=String(),
